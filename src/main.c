@@ -6,7 +6,7 @@
 /*   By: anshimiy <anshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:14:48 by anshimiy          #+#    #+#             */
-/*   Updated: 2023/01/22 13:41:35 by anshimiy         ###   ########.fr       */
+/*   Updated: 2023/01/22 17:46:32 by anshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,20 @@ void	hook(void *param)
 		g_img->instances[0].x += 5;
 }
 
+uint32_t get_rgba(int r, int g, int b, int a)
+{
+    return (r << 24 | g << 16 | b << 8 | a);
+}
+
 int32_t	main(void)
 {
 	mlx_t	*mlx;
 
-	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
+	mlx = mlx_init(WIDTH, HEIGHT, "raycaster", 0);
 	if (!mlx)
 		exit(EXIT_FAILURE);
 	g_img = mlx_new_image(mlx, 128, 128);
-	memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));
+	ft_memset(g_img->pixels, get_rgba(255, 0, 0, 122), (g_img->width * g_img->height) * sizeof(int));
 	mlx_image_to_window(mlx, g_img, 0, 0);
 	mlx_loop_hook(mlx, &hook, mlx);
 	mlx_loop(mlx);
