@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anshimiy <anshimiy@student.42.fr>          +#+  +:+       +#+         #
+#    By: alexnshimiyimana <alexnshimiyimana@stud    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 13:39:11 by anshimiy          #+#    #+#              #
-#    Updated: 2023/01/22 13:38:58 by anshimiy         ###   ########.fr        #
+#    Updated: 2023/01/22 22:15:16 by alexnshimiy      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ RM = rm -rf
 #codams
 LIBMLX	= ./includes/mlx
 HEADERS	= -I ./include -I $(LIBMLX)/include
-42NEEDSIT = -I include -lglfw -L "/Users/anshimiy/.brew/opt/glfw/lib/"
+42NEEDSIT = #-I include -lglfw -L "/Users/anshimiy/.brew/opt/glfw/lib/"
 LIBS	= $(LIBMLX)/libmlx42.a $(42NEEDSIT) -ldl -lglfw -pthread -lm
 
 # .o files in bin

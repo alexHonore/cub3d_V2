@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anshimiy <anshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alexnshimiyimana <alexnshimiyimana@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:14:48 by anshimiy          #+#    #+#             */
-/*   Updated: 2023/01/22 17:46:32 by anshimiy         ###   ########.fr       */
+/*   Updated: 2023/01/22 23:34:31 by alexnshimiy      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct mlx
 #include <stdio.h>
 #include <unistd.h>
 #include <memory.h>
-#define WIDTH 256
-#define HEIGHT 256
+#define WIDTH 1080
+#define HEIGHT 720
 
 mlx_image_t	*g_img;
 
@@ -63,6 +63,29 @@ uint32_t get_rgba(int r, int g, int b, int a)
 {
     return (r << 24 | g << 16 | b << 8 | a);
 }
+uint32_t	color_to_rgb(uint32_t r, uint32_t g, uint32_t b)
+{
+	return (0xFF | (r << 24) | g << 16 | (b << 8));
+}
+
+void	draw_square(mlx_image_t* image, uint32_t x, uint32_t y, uint32_t width, uint32_t height, uint32_t color)
+{
+	uint32_t	i;
+	uint32_t	j;
+
+	i = x;
+	j = y;
+	while (i <= height)
+	{
+		j = y;
+		while (j <= width)
+		{
+			mlx_put_pixel(image, i, j, color);
+			j++;
+		}
+		i++;
+	}
+}
 
 int32_t	main(void)
 {
@@ -71,9 +94,10 @@ int32_t	main(void)
 	mlx = mlx_init(WIDTH, HEIGHT, "raycaster", 0);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, 128, 128);
-	ft_memset(g_img->pixels, get_rgba(255, 0, 0, 122), (g_img->width * g_img->height) * sizeof(int));
-	mlx_image_to_window(mlx, g_img, 0, 0);
+	g_img = mlx_new_image(mlx, 50, 50);
+	//ft_memset(g_img->pixels, get_rgba(255, 0, 0, 122), (g_img->width * g_img->height) * sizeof(int));
+	draw_square(g_img, 5, 5, 50, 50, 0xFF0000FF);
+	mlx_image_to_window(mlx, g_img, 1, 1);
 	mlx_loop_hook(mlx, &hook, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
